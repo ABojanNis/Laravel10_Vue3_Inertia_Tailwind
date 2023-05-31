@@ -18178,7 +18178,18 @@
      
 }
 
-        namespace Barryvdh\Debugbar\Facades { 
+        namespace App\Models { 
+            /**
+     * 
+     *
+     */ 
+        class Listing {
+         
+    }
+     
+}
+
+    namespace Barryvdh\Debugbar\Facades { 
             /**
      * 
      *
@@ -23089,6 +23100,7 @@ namespace  {
             class Validator extends \Illuminate\Support\Facades\Validator {}
             class View extends \Illuminate\Support\Facades\View {}
             class Vite extends \Illuminate\Support\Facades\Vite {}
+            class Listing extends \App\Models\Listing {}
             class Debugbar extends \Barryvdh\Debugbar\Facades\Debugbar {}
             class Flare extends \Spatie\LaravelIgnition\Facades\Flare {}
      
