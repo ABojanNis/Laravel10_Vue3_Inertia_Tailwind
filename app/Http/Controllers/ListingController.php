@@ -20,12 +20,25 @@ class ListingController extends Controller
      *
      * @return Response
      */
-    public function index(): Response
+    public function index(Request $request): Response
     {
+        $filters = $request->only([
+            'priceFrom',
+            'priceTo',
+            'beds',
+            'baths',
+            'areaFrom',
+            'areaTo',
+        ]);
+
         return Inertia::render(
             'Listing/Index',
             [
-                'listings' => Listing::all()
+                'filters' => $filters,
+                'listings' => Listing::latest()
+                    ->filter($filters)
+                    ->paginate(10)
+                    ->withQueryString()
             ]
         );
     }
