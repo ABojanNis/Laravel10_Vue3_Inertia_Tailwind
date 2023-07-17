@@ -18,7 +18,7 @@ const form = useForm({
 </script>
 
 <template>
-    <form @submit.prevent="form.put(route('listing.update', { listing: props.listing.id }))">
+    <form @submit.prevent="form.put(route('realtor.listing.update', { listing: props.listing.id }))">
         <div class="grid grid-cols-6 gap-4">
             <div class="col-span-2">
                 <label class="label">Beds</label>
@@ -92,11 +92,5 @@ const form = useForm({
 </template>
 
 <style scoped>
-label {
-    margin-right: 2em;
-}
 
-div {
-    padding: 2px;
-}
 </style>
