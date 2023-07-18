@@ -21,7 +21,10 @@ const { monthlyPayment, totalPaid, totalInterest } = useMonthlyPayment(props.lis
 <template>
     <div class="flex flex-col-reverse md:grid md:grid-cols-12 gap-4">
         <Box class="md:col-span-7 flex items-center w-full">
-            <div class="w-full text-center font-medium text-gray-500">
+            <div v-if="listing.images.length" class="grid grid-cols-2 gap-1">
+                <img v-for="image in listing.images" :key="image.id" :src="image.src" alt="Realtor estate image">
+            </div>
+            <div v-else class="w-full text-center font-medium text-gray-500">
                 No Images
             </div>
         </Box>

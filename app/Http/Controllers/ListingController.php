@@ -51,7 +51,7 @@ class ListingController extends Controller
         return Inertia::render(
             'Listing/Show',
             [
-                'listing' => $listing
+                'listing' => $listing->load('images')
             ]
         );
     }
