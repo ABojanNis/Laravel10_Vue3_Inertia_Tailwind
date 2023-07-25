@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Listing;
-use Illuminate\Http\RedirectResponse;
+use Auth;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Inertia\Response;
@@ -36,6 +36,7 @@ class ListingController extends Controller
                 'filters' => $filters,
                 'listings' => Listing::latest()
                     ->filter($filters)
+                    ->withoutSold()
                     ->paginate(10)
                     ->withQueryString()
             ]
@@ -51,7 +52,8 @@ class ListingController extends Controller
         return Inertia::render(
             'Listing/Show',
             [
-                'listing' => $listing->load('images')
+                'listing' => $listing->load('images'),
+                'offerMade' => !Auth::user() ? null : $listing->offers()->byMe()->first(),
             ]
         );
     }

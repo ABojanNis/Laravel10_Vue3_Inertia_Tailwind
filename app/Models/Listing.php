@@ -39,6 +39,16 @@ class Listing extends Model
         return $this->hasMany(ListingImage::class);
     }
 
+    public function offers(): HasMany
+    {
+        return $this->hasMany(Offer::class, 'listing_id');
+    }
+
+    public function scopeWithoutSold(Builder $query): Builder
+    {
+        return $query->whereNull('sold_at');
+    }
+
     public function scopeFilter(Builder $query, array $filters)
     {
         return $query->when(
