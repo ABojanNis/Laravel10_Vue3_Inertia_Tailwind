@@ -4,6 +4,8 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\ListingController;
 use App\Http\Controllers\ListingOfferController;
+use App\Http\Controllers\NotificationController;
+use App\Http\Controllers\NotificationSeenController;
 use App\Http\Controllers\RealtorListingAcceptOfferController;
 use App\Http\Controllers\RealtorListingController;
 use App\Http\Controllers\RealtorListingImageController;
@@ -30,6 +32,14 @@ Route::resource('listing', ListingController::class)
 Route::resource('listing.offer', ListingOfferController::class)
     ->middleware('auth')
     ->only(['store']);
+
+Route::resource('notification', NotificationController::class)
+    ->middleware('auth')
+    ->only(['index']);
+
+Route::name('notification.seen')
+    ->put('notification/{notification}/seen', NotificationSeenController::class)
+    ->middleware('auth');
 
 Route::get('login', [AuthController::class, 'create'])
     ->name('login');

@@ -45,7 +45,7 @@ class RealtorListingController extends Controller
      * @param Listing $listing
      * @return Response
      */
-    public function show(Listing $listing)
+    public function show(Listing $listing): Response
     {
         return Inertia::render(
             'Realtor/Show',
